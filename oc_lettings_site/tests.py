@@ -10,5 +10,3 @@ class TestIndex(TestCase):
     def test_title(self):
         response = self.client.get(reverse('index'))
         self.assertContains(response, "Welcome to Holiday Homes")
-
-
