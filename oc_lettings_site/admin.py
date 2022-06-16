@@ -1,5 +1,4 @@
 from django.contrib import admin
-
 from lettings.models import Letting, Address
 from profiles.models import Profile
 
