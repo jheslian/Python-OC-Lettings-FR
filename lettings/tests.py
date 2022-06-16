@@ -4,7 +4,7 @@ from django.urls import reverse
 from .models import Address, Letting
 
 
-class LettingsTest(TestCase):
+class TestLettings(TestCase):
 
     def setUp(self):
         self.address = Address.objects.create(

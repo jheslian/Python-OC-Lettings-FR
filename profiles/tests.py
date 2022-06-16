@@ -5,7 +5,7 @@ from django.urls import reverse
 from .models import Profile
 
 
-class ProfileTest(TestCase):
+class TestProfile(TestCase):
 
     def setUp(self):
         self.user = User.objects.create(
