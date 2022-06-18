@@ -41,20 +41,7 @@ jobs:
           name: Run Linting
           command: flake8
 
-  docker-build:
-    docker:
-      - image: cimg/python:3.10.2
-    resource_class: medium
-    steps:
-      - checkout
-      - setup_remote_docker
-      - run:
-          name: Docker container
-          command: |
-            echo "$DOCKER_PASSWORD" | docker login --username $DOCKER_LOGIN --password-stdin
-            docker build --tag oc-lettings:latest .
-            docker tag oc-lettings $DOCKER_LOGIN/$DOCKER_REPO:$CIRCLE_SHA1
-            docker push $DOCKER_LOGIN/$DOCKER_REPO:$CIRCLE_SHA1
+
 
 
 # Invoke jobs via workflows
@@ -64,4 +51,9 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build-and-test
-      - docker-build
+      build:
+        docker:
+          - image: docker pull jheslian/oc-lettings
+            auth:
+              username: jheslian
+              password: $DOCKERHUB_PASSWORD
