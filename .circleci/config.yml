@@ -50,8 +50,8 @@ jobs:
       - run:
           name: Build Docker image
           command:
-            docker pull jheslian/oc-lettings
-            docker run --name oc-lettings -d -p 8000:8000 oc-lettings:latest
+            export TAG=$(echo $CIRCLE_SHA1 | cut -c -7)
+            docker build -t "$TAG" -t web:latest .
 
 
 # Invoke jobs via workflows
