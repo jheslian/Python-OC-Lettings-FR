@@ -50,8 +50,9 @@ jobs:
       - run:
           name: Build Docker image
           command:
-            docker build --tag oc-lettings:latest .
+            docker pull jheslian/oc-lettings
             docker run --name oc-lettings -d -p 8000:8000 oc-lettings:latest
+
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
