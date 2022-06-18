@@ -39,7 +39,19 @@ jobs:
           command: pytest
       - run:
           name: Run Linting
-          command: flake8   
+          command: flake8
+
+  docker-build:
+    docker:
+      - image: docker:latest
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Build Docker image
+          command:
+            docker build --tag oc-lettings:latest .
+            docker run --name oc-lettings -d -p 8000:8000 oc-lettings:latest
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
