@@ -44,7 +44,11 @@ jobs:
       - checkout
       - run:
           name: Virtual environment
-          command: ./build-env.sh
+          command:
+            python -m venv venv &&
+            source venv/bin/activate &&
+            pip install -r requirements.tx
+
           when: always
       - run:
           name: Run tests
