@@ -11,6 +11,19 @@ orbs:
   # See the orb documentation here: https://circleci.com/developer/orbs/orb/circleci/python
   python: circleci/python@1.5.0
 
+
+executors:
+  docker-publisher:
+    environment:
+      IMAGE_NAME: oc-lettings:latest
+    docker: # Each job requires specifying an executor
+    # (either docker, macos, or machine), see
+      - image: circleci/node:latest
+        auth:
+            username: $DOCKERHUB_USERNAME
+            password: $DOCKERHUB_PASSWORD
+
+
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
@@ -41,6 +54,22 @@ jobs:
           name: Run Linting
           command: flake8
 
+    publish-container-to-hub:
+      executor: docker-publisher
+
+      steps:
+        - checkout
+        - setup_remote_docker
+        - run:
+            name: Publish Docker Image to Docker Hub
+            command: |
+              echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+              docker build -t $IMAGE_NAME .
+              docker push $IMAGE_NAME:latest
+
+
+
+
 
 
 
@@ -51,9 +80,4 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build-and-test
-      build:
-        docker:
-          - image: docker pull jheslian/oc-lettings
-            auth:
-              username: jheslian
-              password: $DOCKERHUB_PASSWORD
+      - publish-container-to-hub
