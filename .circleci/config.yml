@@ -45,10 +45,10 @@ jobs:
       - run:
           name: Run tests
           # This assumes pytest is installed via the install-package step above
-          command: pytest
+          command: source env/bin/activate && pytest
       - run:
           name: Run Linting
-          command: flake8
+          command: source env/bin/activate && flake8
 
   publish-container-to-hub:
     executor: docker-publisher
