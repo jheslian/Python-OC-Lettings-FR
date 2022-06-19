@@ -43,6 +43,10 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Virtual environment
+          command: ./build-env.sh
+          when: always
+      - run:
           name: Run tests
           # This assumes pytest is installed via the install-package step above
           command: source env/bin/activate && pytest

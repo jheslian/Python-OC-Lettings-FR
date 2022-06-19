@@ -11,8 +11,9 @@ ENV PYTHONUNBUFFERED 1
 # install dependencies
 RUN pip install --upgrade pip
 COPY ./requirements.txt /usr/src/app
-RUN python3 -m venv env
-RUN source env/bin/activate
+ENV VIRTUAL_ENV=/opt/venv
+RUN python3 -m venv $VIRTUAL_ENV
+ENV PATH="${VIRTUAL_ENV}/bin:${PATH}"
 RUN pip install -r requirements.txt
 
 # copy project
