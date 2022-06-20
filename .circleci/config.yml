@@ -69,7 +69,7 @@ jobs:
       - run:
           name: Deploy Master to Heroku
           command: |
-            HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:login
+            heroku login
             heroku create $HEROKU_APP_NAME
             git push heroku master
             heroku run python manage.py migrate
