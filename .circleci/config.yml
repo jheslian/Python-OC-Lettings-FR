@@ -49,8 +49,7 @@ jobs:
           command: source venv/bin/activate && flake8
 
   publish-container-to-hub:
-    docker:
-      - image: cimg/python:3.10.2
+    machine: true
     steps:
       - checkout
       - setup_remote_docker
@@ -62,6 +61,12 @@ jobs:
             docker push $DOCKERHUB_USERNAME/$PROJECT_NAME:$CIRCLE_SHA1
             echo "111111"
             echo $CIRCLE_SHA1
+
+  deploy-production:
+    executor: heroku/default
+    steps:
+      - checkout
+      - heroku/deploy-via-git
 
 
 
@@ -77,3 +82,10 @@ workflows:
     jobs:
       - build-and-test
       - publish-container-to-hub
+      - deploy-production:
+          requires:
+            - containerise
+          filters:
+            branches:
+              only:
+                - master
