@@ -49,8 +49,8 @@ jobs:
           command: source venv/bin/activate && flake8
 
   publish-container-to-hub:
-    executor: docker-publisher
-
+    docker:
+      - image: cimg/python:3.10.2
     steps:
       - checkout
       - setup_remote_docker
