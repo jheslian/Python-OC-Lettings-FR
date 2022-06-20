@@ -12,16 +12,6 @@ orbs:
   python: circleci/python@1.5.0
 
 
-executors:
-  docker-publisher:
-    environment:
-      IMAGE_NAME: jheslian/oc-lettings
-    docker: # Each job requires specifying an executor
-    # (either docker, macos, or machine), see
-      - image: circleci/node:latest
-        auth:
-            username: $DOCKERHUB_USERNAME
-            password: $DOCKERHUB_PASSWORD
 
 
 # Define a job to be invoked later in a workflow.
@@ -68,8 +58,8 @@ jobs:
           name: Publish Docker Image to Docker Hub
           command: |
             echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-            docker build -t $IMAGE_NAME .
-            docker push $IMAGE_NAME:latest
+            docker build -t $DOCKERHUB_USERNAME/$PROJECT_NAME:$CIRCLE_SHA1 .
+            docker push $DOCKERHUB_USERNAME/$PROJECT_NAME:$CIRCLE_SHA1
             echo "111111"
             echo $CIRCLE_SHA1
 
