@@ -9,8 +9,8 @@ orbs:
   # Orb commands and jobs help you with common scripting around a language/tool
   # so you dont have to copy and paste it everywhere.
   # See the orb documentation here: https://circleci.com/developer/orbs/orb/circleci/python
-  # python: circleci/python@1.5.0
-  docker: circleci/docker@2.1.2
+  python: circleci/python@1.5.0
+  # docker: circleci/docker@2.1.2
 
 
 
@@ -71,12 +71,12 @@ jobs:
           command: |
             sudo curl https://cli-assets.heroku.com/install.sh | sh
             HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:login
+            heroku git:remote -a ${HEROKU_APP_NAME}
+            git push heroku master
+            heroku run python manage.py migrate
+            heroku run python manage.py loaddata db.json
 
-            HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:push -a $HEROKU_APP_NAME web
-            HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:release -a $HEROKU_APP_NAME web
-            HEROKU_API_KEY=${HEROKU_API_KEY} heroku run python manage.py migrate -a $HEROKU_APP_NAME
-            HEROKU_API_KEY=${HEROKU_API_KEY} heroku run python manage.py loaddata db.json -a $HEROKU_APP_NAME
-            HEROKU_API_KEY=${HEROKU_API_KEY} heroku logs --tail -a $HEROKU_APP_NAME
+
 
 
 
