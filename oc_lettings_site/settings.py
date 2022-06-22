@@ -5,7 +5,6 @@ from sentry_sdk.integrations.django import DjangoIntegration
 import environ
 from dotenv import load_dotenv
 
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -118,7 +117,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 django_heroku.settings(locals())
 
 sentry_sdk.init(
-    dsn=str(load_dotenv('DSN')),
+    dsn='https://758b4033642343f9922bfc093eb6f430@o1250128.ingest.sentry.io/6521218',
     integrations=[DjangoIntegration()],
 
     # Set traces_sample_rate to 1.0 to capture 100%
