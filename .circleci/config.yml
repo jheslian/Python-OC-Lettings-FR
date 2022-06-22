@@ -91,6 +91,8 @@ workflows:
       - build-and-test
       - publish-container-to-hub
       - deploy-production:
+          requires:
+            - publish-container-to-hub
           filters:
             branches:
               only:
