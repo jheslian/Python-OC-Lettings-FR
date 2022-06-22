@@ -10,7 +10,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Initialise environment variables
 env = environ.Env()
-environ.Env.read_env(eenv_file=str(BASE_DIR) + '/.env')
+environ.Env.read_env(env_file=str(BASE_DIR) + '/.env')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
