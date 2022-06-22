@@ -1,4 +1,3 @@
-from django.http import HttpResponse
 from django.test import TestCase
 from django.urls import reverse
 
@@ -16,9 +15,4 @@ class TestIndex(TestCase):
 # test sentry
 def trigger_error(request):
     division_by_zero = 1 / 0
-    """ try:
-        division_by_zero = 1 / 0
-    except Exception as err:
-        print(err)
-    return HttpResponse('This is an error')"""
-
+    return division_by_zero
