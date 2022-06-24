@@ -90,7 +90,15 @@ workflows:
     jobs:
       - build-and-test
       - publish-container-to-hub
+        requires:
+          - build-and-test
+          filters:
+            branches:
+              only:
+                - master
       - deploy-production:
+          requires:
+            - publish-container-to-hub
           filters:
             branches:
               only:
