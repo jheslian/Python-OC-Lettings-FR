@@ -1,77 +1,110 @@
-## Résumé
 
-Site web d'Orange County Lettings
-
-## Développement local
-
-### Prérequis
-
-- Compte GitHub avec accès en lecture à ce repository
-- Git CLI
+# Orange County Lettings Website
+	
+	
+### Objective
+Scale a Django Application Using Modular Architecture where as the improvement of the application follows:
+1.  Reduction of various technical debts on the application
+2.  Redesign of the modular architecture
+3.  Added CI/CD pipeline using CircleCI and Heroku
+4.  Application monitoring and error tracking via Sentry.
+  
+# Development
+  
+### Prerequisites
+- Git
 - SQLite3 CLI
-- Interpréteur Python, version 3.6 ou supérieure
-
-Dans le reste de la documentation sur le développement local, il est supposé que la commande `python` de votre OS shell exécute l'interpréteur Python ci-dessus (à moins qu'un environnement virtuel ne soit activé).
-
+- Python interpreter, version 3.6 or higher
+  
+In the rest of the local development documentation, it is assumed that your OS shell's `python` command runs the Python interpreter above (unless a virtual environment is enabled).
+  
 ### macOS / Linux
-
-#### Cloner le repository
-
-- `cd /path/to/put/project/in`
-- `git clone https://github.com/OpenClassrooms-Student-Center/Python-OC-Lettings-FR.git`
-
-#### Créer l'environnement virtuel
-
-- `cd /path/to/Python-OC-Lettings-FR`
+  
+#### Clone repository
+  
+- `git clone https://github.com/jheslian/Python-OC-Lettings-FR.git`
+  
+#### Create the virtual environment
+  
+- `cd Python-OC-Lettings-EN`
 - `python -m venv venv`
-- `apt-get install python3-venv` (Si l'étape précédente comporte des erreurs avec un paquet non trouvé sur Ubuntu)
-- Activer l'environnement `source venv/bin/activate`
-- Confirmer que la commande `python` exécute l'interpréteur Python dans l'environnement virtuel
+- `apt-get install python3-venv` (If the previous step has errors with a package not found on Ubuntu)
+- Activate environment `source venv/bin/activate`
+- Confirm that the `python` command is running the Python interpreter in the virtual environment
 `which python`
-- Confirmer que la version de l'interpréteur Python est la version 3.6 ou supérieure `python --version`
-- Confirmer que la commande `pip` exécute l'exécutable pip dans l'environnement virtuel, `which pip`
-- Pour désactiver l'environnement, `deactivate`
+- Confirm Python interpreter version is 3.6 or higher `python --version`
+- Confirm that the `pip` command runs the pip executable in the virtual environment, `which pip`
+- To deactivate the environment, `deactivate`
+  
 
-#### Exécuter le site
 
-- `cd /path/to/Python-OC-Lettings-FR`
+#### Run the application
+  
+- `cd /path/to/Python-OC-Lettings-EN`
 - `source venv/bin/activate`
-- `pip install --requirement requirements.txt`
+- `pip install -r requirements.txt`
 - `python manage.py runserver`
-- Aller sur `http://localhost:8000` dans un navigateur.
-- Confirmer que le site fonctionne et qu'il est possible de naviguer (vous devriez voir plusieurs profils et locations).
-
+- Go to `http://localhost:8000` in a browser.
+- Confirm that the site is working and navigable (you should see multiple profiles and locations).
+  
 #### Linting
-
-- `cd /path/to/Python-OC-Lettings-FR`
+  
+- `cd /path/to/Python-OC-Lettings-EN`
 - `source venv/bin/activate`
 - `flake8`
-
-#### Tests unitaires
-
-- `cd /path/to/Python-OC-Lettings-FR`
+  
+#### Unit tests
+  
+- `cd /path/to/Python-OC-Lettings-EN`
 - `source venv/bin/activate`
 - `pytest`
+  
+#### Database
+  
+- `cd /path/to/Python-OC-Lettings-EN`
+- Open a `sqlite3` shell session
+- Connect to `.open oc-lettings-site.sqlite3` database
+- Show tables in `.tables` database
+- Show columns in profiles table, `pragma table_info(profiles_profile);`
+- Run a query on the profile table, `select user_id, favorite_city from
+ profiles_profile where favorite_city like 'B%';`- `.quit` to quit
+  
+#### Admin Panel
+  
+- Go to `http://localhost:8000/admin`
+- Login with user `admin`, password `Abc1234!`
 
-#### Base de données
-
-- `cd /path/to/Python-OC-Lettings-FR`
-- Ouvrir une session shell `sqlite3`
-- Se connecter à la base de données `.open oc-lettings-site.sqlite3`
-- Afficher les tables dans la base de données `.tables`
-- Afficher les colonnes dans le tableau des profils, `pragma table_info(Python-OC-Lettings-FR_profile);`
-- Lancer une requête sur la table des profils, `select user_id, favorite_city from
-  Python-OC-Lettings-FR_profile where favorite_city like 'B%';`
-- `.quit` pour quitter
-
-#### Panel d'administration
-
-- Aller sur `http://localhost:8000/admin`
-- Connectez-vous avec l'utilisateur `admin`, mot de passe `Abc1234!`
-
+  
 ### Windows
+  
+Using PowerShell, as above except:
+  
+- To activate the virtual environment, `.\venv\Scripts\Activate.ps1` - Replace `which <my-command>` with `(Get-Command <my-command>).Path`
 
-Utilisation de PowerShell, comme ci-dessus sauf :
+## Run application from dockerhub 
 
-- Pour activer l'environnement virtuel, `.\venv\Scripts\Activate.ps1` 
-- Remplacer `which <my-command>` par `(Get-Command <my-command>).Path`
+Pull the image from dockerhub and run application locally  
+1. Run `docker pull jheslian/oc-lettings`
+2. Run `docker run -p 8000:8000 jheslian/oc-lettings:latest
+
+# Deployment
+## Prerequisites
+-   [GitHub](https://github.com/) - clone the application
+ -  [Docker](https://www.docker.com/)  - application container
+-   [CircleCI](https://circleci.com/) - a continuous integration and continuous delivery platform
+-   [Heroku](https://www.heroku.com/)  - simplest path to get the application run in the market
+-   [Sentry](https://sentry.io/welcome/) - a crash reporting platform that provides you with "**real-time insight into production deployments"**
+
+Configuration:
+Create the environment variables in circle ci project with the following name:
+[![Screenshot-2022-06-27-at-20-37-47.png](https://i.postimg.cc/WzxkkMkQ/Screenshot-2022-06-27-at-20-37-47.png)](https://postimg.cc/BPcbWPNg)
+
+
+
+-   In CircleCI, create environment variables
+    -   `HEROKU_API_KEY`  with value  `<heroku-api-key>`
+    -   `HEROKU_APP_NAME`  with value  `<heroku-app-name>`
+    -   Trigger a build via the CircleCI web console or by pushing a commit to  `master`
+-   Navigate to  `https://<heroku-app-name>.herokuapp.com`  in a browser
+-   Navigate to  `https://<heroku-app-name>.herokuapp.com/sentry-debug`, this should trigger an error in sentry
+-   Login to the admin panel using above credentials
