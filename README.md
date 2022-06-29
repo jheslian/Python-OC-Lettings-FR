@@ -81,11 +81,24 @@ Using PowerShell, as above except:
   
 - To activate the virtual environment, `.\venv\Scripts\Activate.ps1` - Replace `which <my-command>` with `(Get-Command <my-command>).Path`
 
-## Run application from dockerhub 
+## Run the application using Docker:
+Prerequiqites:
+- [Docker](https://www.docker.com/)
 
+### Build an image/container
+1. Run `docker build --tag <dockerhub name>:<tagname>`
+2. Run `docker run --name <container name> -d -p 8000:8000 <dockerhub name>:<tagname>`
+
+### Create image in dockerhub with image built locally
+1. Run `docker login`
+2. Run `docker tag <dockerhub name>:<tagname> <dockerhub username>/<dockerhub name>:<tagname>`
+3. Run `docker push <dockerhub username>/<dockerhub name>:<tagname>`
+***Check dockerhub account for image created***
+
+### Use image from dockerhub 
 Pull the image from dockerhub and run application locally  
-1. Run `docker pull jheslian/oc-lettings`
-2. Run `docker run -p 8000:8000 jheslian/oc-lettings:latest
+1. Run `docker pull <dockerhub username>/<dockerhub name>:<tagname>`
+2. Run `docker run -p 8000:8000 <dockerhub username>/<dockerhub name>:<tagname>`
 
 # Deployment
 ## Prerequisites
