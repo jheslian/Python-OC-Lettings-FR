@@ -95,16 +95,13 @@ Pull the image from dockerhub and run application locally
 -   [Heroku](https://www.heroku.com/)  - simplest path to get the application run in the market
 -   [Sentry](https://sentry.io/welcome/) - a crash reporting platform that provides you with "**real-time insight into production deployments"**
 
+***Note:*** Make sure that there are no project name "oc-lettings-proj" in your heroku account
+
 Configuration:
 Create the environment variables in circle ci project with the following name:
 [![Screenshot-2022-06-27-at-20-37-47.png](https://i.postimg.cc/WzxkkMkQ/Screenshot-2022-06-27-at-20-37-47.png)](https://postimg.cc/BPcbWPNg)
 
 
-
--   In CircleCI, create environment variables
-    -   `HEROKU_API_KEY`  with value  `<heroku-api-key>`
-    -   `HEROKU_APP_NAME`  with value  `<heroku-app-name>`
-    -   Trigger a build via the CircleCI web console or by pushing a commit to  `master`
 -   Navigate to  `https://<heroku-app-name>.herokuapp.com`  in a browser
 -   Navigate to  `https://<heroku-app-name>.herokuapp.com/sentry-debug`, this should trigger an error in sentry
--   Login to the admin panel using above credentials
+-   Login to the admin panel `https://<heroku-app-name>.herokuapp.com/admin` using above credentials
