@@ -99,9 +99,11 @@ Pull the image from dockerhub and run application locally
 
 Configuration:
 Create the environment variables in circle ci project with the following name:
+
 [![Screenshot-2022-06-27-at-20-37-47.png](https://i.postimg.cc/WzxkkMkQ/Screenshot-2022-06-27-at-20-37-47.png)](https://postimg.cc/BPcbWPNg)
 
 
+Then:
 -   Navigate to  `https://<heroku-app-name>.herokuapp.com`  in a browser
 -   Navigate to  `https://<heroku-app-name>.herokuapp.com/sentry-debug`, this should trigger an error in sentry
 -   Login to the admin panel `https://<heroku-app-name>.herokuapp.com/admin` using above credentials
