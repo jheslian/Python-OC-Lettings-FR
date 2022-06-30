@@ -39,7 +39,7 @@ In the rest of the local development documentation, it is assumed that your OS s
 
 
 #### Run the application
-  
+  ***Note:*** `DEBUG=False` must be modified to `DEBUG=True` on the oc_lettings_site/setting.py when on development.
 - `cd /path/to/Python-OC-Lettings-EN`
 - `source venv/bin/activate`
 - `pip install -r requirements.txt`
