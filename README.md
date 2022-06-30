@@ -108,7 +108,10 @@ Pull the image from dockerhub and run application locally
 -   [Heroku](https://www.heroku.com/)  - simplest path to get the application run in the market
 -   [Sentry](https://sentry.io/welcome/) - a crash reporting platform that provides you with "**real-time insight into production deployments"**
 
-***Note:*** Make sure that there are no project name "oc-lettings-proj" in your heroku account
+***Note:*** 
+1. Make sure you add your project repository on circli ci via connecting your github account
+2. Create a project in sentry choosing python as language
+3. Make sure that there are no project name "oc-lettings-proj" in your heroku account
 
 Configuration:
 Create the environment variables in circle ci project with the following name:
